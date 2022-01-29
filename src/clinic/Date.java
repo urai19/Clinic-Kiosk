@@ -88,6 +88,7 @@ public class Date implements Comparable<Date> {
     }
 
     @Override
+
     public int compareTo(Date date) {
         int out=0;
         if(date.day == this.day && date.month == this.month && date.year == this.year) out = 3;
@@ -106,6 +107,18 @@ public class Date implements Comparable<Date> {
             }
         }
         return out;
+    }
+
+    @Override
+    public String toString() {
+        String output= this.month+"/"+this.day+"/"+this.year;
+        return output;
+    }
+
+    public static void main(String[] args) {
+        Date date1= new Date("1/8/2008");
+        Date date2= new Date("1/8/2008");
+        System.out.println(date1.compareTo(date2));
     }
 
 
