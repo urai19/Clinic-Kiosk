@@ -1,9 +1,11 @@
 package clinic;
 
-public class Main {
+public class Appointment {
+
+
+
 
     public static void main(String[] args) {
-	// write your code here
 
     }
 }
