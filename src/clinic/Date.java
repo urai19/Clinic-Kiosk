@@ -89,8 +89,23 @@ public class Date implements Comparable<Date> {
 
     @Override
     public int compareTo(Date date) {
-        if(day == date.day && month == date.month && year == date.year) return 1;
-        else return 0;
+        int out=0;
+        if(date.day == this.day && date.month == this.month && date.year == this.year) out = 3;
+
+        if (date.year < this.year){
+            out=1;
+        }
+        else{
+            if(date.month < this.month){
+                out=1;
+            }
+            else{
+                if(date.day < this.day){
+                    out=1;
+                }
+            }
+        }
+        return out;
     }
 
 
