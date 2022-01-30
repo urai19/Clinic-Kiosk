@@ -1,7 +1,8 @@
 package clinic;
 
 public class Appointment {
-
+    private Patient patient;
+    private Timeslot slot;
 
 
 

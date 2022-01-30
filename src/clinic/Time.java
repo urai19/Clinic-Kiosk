@@ -5,6 +5,11 @@ public class Time implements Comparable<Time> {
     private int hour;
     private int minute;
 
+    public Time(int hour, int minute){
+        this.hour=hour;
+        this.minute=minute;
+    }
+
     public boolean isValid() {
         if (hour < 9 || hour >= 17 || minute < 0 || minute > 60) {
             return false;
@@ -29,5 +34,9 @@ public class Time implements Comparable<Time> {
         if (this.hour == time.hour && this.minute == time.minute) {
             return 1;
         } else return 0;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

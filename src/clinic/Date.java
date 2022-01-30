@@ -88,9 +88,37 @@ public class Date implements Comparable<Date> {
     }
 
     @Override
+
     public int compareTo(Date date) {
-        if(day == date.day && month == date.month && year == date.year) return 1;
-        else return 0;
+        int out=0;
+        if(date.day == this.day && date.month == this.month && date.year == this.year) out = 3;
+
+        if (date.year < this.year){
+            out=1;
+        }
+        else{
+            if(date.month < this.month){
+                out=1;
+            }
+            else{
+                if(date.day < this.day){
+                    out=1;
+                }
+            }
+        }
+        return out;
+    }
+
+    @Override
+    public String toString() {
+        String output= this.month+"/"+this.day+"/"+this.year;
+        return output;
+    }
+
+    public static void main(String[] args) {
+        Date date1= new Date("1/8/2008");
+        Date date2= new Date("1/8/2008");
+        System.out.println(date1.compareTo(date2));
     }
 
 
