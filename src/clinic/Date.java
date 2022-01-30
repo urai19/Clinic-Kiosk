@@ -90,8 +90,8 @@ public class Date implements Comparable<Date> {
     @Override
 
     public int compareTo(Date date) {
-        int out=0;
-        if(date.day == this.day && date.month == this.month && date.year == this.year) out = 3;
+        int out=-1;
+        if(date.day == this.day && date.month == this.month && date.year == this.year) out = 0;
 
         if (date.year < this.year){
             out=1;
@@ -116,6 +116,33 @@ public class Date implements Comparable<Date> {
     }
 
     public static void main(String[] args) {
+        //Test Case#1, testing isValid with April 31
+        Date date1_1= new Date("4/31/1995");
+        System.out.println(date1_1.isValid()); //Expected:false
+
+        //Test Case#2, testing isValid with Jan 60
+        Date date2_1= new Date("1/60/1995");
+        System.out.println(date2_1.isValid()); //Expected:false
+
+        //Test Case#3, testing isValid with Feb 29 on non-leap year
+        Date date3_1= new Date("2/29/2015");
+        System.out.println(date3_1.isValid()); //Expected:false
+
+        //Test Case#4, testing isValid with Feb 29 on leap year
+        Date date4_1= new Date("2/29/2016");
+        System.out.println(date4_1.isValid()); //Expected:true
+
+
+
+
+
+
+
+
+
+
+
+
         Date date1= new Date("1/8/2008");
         Date date2= new Date("1/8/2008");
         System.out.println(date1.compareTo(date2));
