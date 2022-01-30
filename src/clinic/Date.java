@@ -121,5 +121,4 @@ public class Date implements Comparable<Date> {
         System.out.println(date1.compareTo(date2));
     }
 
-
 }

@@ -11,11 +11,9 @@ public class Time implements Comparable<Time> {
     }
 
     public boolean isValid() {
-        if (hour < 9 || hour >= 17 || minute < 0 || minute > 60) {
+        if (hour < 9 || hour >= 17 || minute < 0 || minute >59) {
             return false;
-        }
-
-        if (minute != 00 || minute != 15 || minute != 30 || minute != 45) {
+        } else if (minute%15 !=0) {
             return false;
         } else {
             return true;
