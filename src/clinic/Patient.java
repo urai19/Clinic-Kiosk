@@ -35,7 +35,7 @@ public class Patient implements Comparable<Patient> {
                 output=1;
             }
             else{   //comparing dob's because first and last names are same
-                if((this.dob).compareTo(patient.dob)==-1) output=-1;
+                if((this.dob).compareTo(patient.dob)==1) output=-1;
                 else output=1;
             }
         }

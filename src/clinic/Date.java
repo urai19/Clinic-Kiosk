@@ -93,15 +93,15 @@ public class Date implements Comparable<Date> {
         int out=-1;
         if(date.day == this.day && date.month == this.month && date.year == this.year) out = 0;
 
-        if (date.year < this.year){
+        if (this.year < date.year){
             out=1;
         }
         else{
-            if(date.month < this.month){
+            if(this.month < date.month){
                 out=1;
             }
             else{
-                if(date.day < this.day){
+                if(this.day < date.day){
                     out=1;
                 }
             }
@@ -132,20 +132,41 @@ public class Date implements Comparable<Date> {
         Date date4_1= new Date("2/29/2016");
         System.out.println(date4_1.isValid()); //Expected:true
 
+        //Test Case#5, testing compareTo with same dates
+        Date date5_1= new Date("1/8/2008");
+        Date date5_2= new Date("1/8/2008");
+        System.out.println(date5_1.compareTo(date5_2)); //expected = 0
 
+        //Test Case#6, testing compareTo with same month and day
+        Date date6_1= new Date("1/8/2008");
+        Date date6_2= new Date("1/8/2009");
+        System.out.println(date6_1.compareTo(date6_2)); //expected = 1
 
+        //Test Case#7, testing compareTo with same month and day
+        Date date7_1= new Date("1/8/2009");
+        Date date7_2= new Date("1/8/2008");
+        System.out.println(date7_1.compareTo(date7_2)); //expected = -1
 
+        //Test Case#8, testing compareTo with same month and day
+        Date date8_1= new Date("1/8/2008");
+        Date date8_2= new Date("1/9/2008");
+        System.out.println(date8_1.compareTo(date8_2)); //expected = 1
 
+        //Test Case#9, testing compareTo with same month and day
+        Date date9_1= new Date("1/9/2008");
+        Date date9_2= new Date("1/8/2008");
+        System.out.println(date9_1.compareTo(date9_2)); //expected = -1
 
+        //Test Case#10, testing compareTo with same month and day
+        Date date10_1= new Date("1/9/2008");
+        Date date10_2= new Date("2/9/2008");
+        System.out.println(date10_1.compareTo(date10_2)); //expected = 1
 
+        //Test Case#11, testing compareTo with same month and day
+        Date date11_1= new Date("2/9/2008");
+        Date date11_2= new Date("1/9/2008");
+        System.out.println(date11_1.compareTo(date11_2)); //expected = -1
 
-
-
-
-
-        Date date1= new Date("1/8/2008");
-        Date date2= new Date("1/8/2008");
-        System.out.println(date1.compareTo(date2));
     }
 
 }
