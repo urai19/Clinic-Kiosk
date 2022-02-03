@@ -13,7 +13,7 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public String toString(){
-        String output = fname + " "+ lname + " " + dob;
+        String output = fname + " "+ lname + ", DOB:"+dob;
         return output;
     }
 

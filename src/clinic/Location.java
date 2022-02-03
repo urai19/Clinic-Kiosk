@@ -1,17 +1,24 @@
 package clinic;
 
 public enum Location {
-    BRIDGEWATER ("08807", "Somerset County"),
-    PISCATAWAY ("08854", "Middlesex County"),
-    PRINCETON ("08542", "Mercer County"),
-    MORRISTOWN ("07960", "Morris County"),
-    UNION ("07083", "Union County");
+    SOMERSET ("08807", "Bridgewater"),
+    MIDDLESEX ("08854", "Piscataway"),
+    MERCER ("08542", "Princeton"),
+    MORRIS ("07960", "Morristown"),
+    UNION ("07083", "Union");
 
     private final String zipcode;
-    private final String county;
+    private final String city;
 
-    Location(String zipcode, String county) {
+    Location(String zipcode, String city) {
         this.zipcode = zipcode;
-        this.county = county;
+        this.city = city;
     }
+
+    @Override
+    public String toString(){
+        String output=this.city+ " "+ this.zipcode;
+        return output;
+    }
+
 }
