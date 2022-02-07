@@ -11,6 +11,7 @@ public class Schedule {
         this.appointments=appointments;
         this.numAppts=numAppts;
     }
+
     private int find(Appointment appt) {//return the index, or NOT_FOUND
         for (int i = 0; i<appointments.length; i++){
             if (appointments[i].equals(appt)){
@@ -23,8 +24,11 @@ public class Schedule {
 
     private void grow() {//increase the capacity of the container by 4
 
-
-
+       Appointment[] newAppointmentArray = new Appointment[appointments.length + 4];
+       for (int i=0; i<appointments.length; i++){
+           newAppointmentArray[i] = appointments[i];
+       }
+        appointments = newAppointmentArray;
     }
 
     public boolean add(Appointment appt){
@@ -47,9 +51,20 @@ public class Schedule {
         }
         return returner;
     }
+
+
     public boolean remove(Appointment appt) {
-return false;
+        boolean returner  = false;
+        for (int i = 0; i< appointments.length; i++){
+            if (appointments[i].equals(appt)){
+                appointments[i] = null;
+                returner = true;
+            }
+        }
+        return returner;
     }
+
+
     public void print() {
         for(Appointment appt:appointments){
             System.out.println(appt.toString());
