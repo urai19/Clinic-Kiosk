@@ -26,17 +26,51 @@ public class Schedule {
 
 
     }
-    public boolean add(Appointment appt) {
-return false;
+
+    public boolean add(Appointment appt){
+
+        boolean returner = false;
+
+        if (appt.getPatient().getDob().isValid() && appt.getTimeslot().getTime().isValid()){
+            returner = false;
+        }
+
+        if (appointments[appointments.length-1] != null){
+            grow();
+        }
+
+        for (int i=0; i<appointments.length;i++){
+            if (appointments[i]==null){
+                appointments[i] = appt;
+                returner = true;
+            }
+        }
+        return returner;
     }
     public boolean remove(Appointment appt) {
 return false;
     }
     public void print() {
-
+        for(Appointment appt:appointments){
+            System.out.println(appt.toString());
+        }
     } //print all the appointments in current order
     public void printByZip() {
-
+        Appointment[] sortedAppts= new Appointment[appointments.length];
+        for(int i=0; i< sortedAppts.length; i++){
+            for(Appointment appt:appointments){
+                if(appt.getLocation().equals(Location.UNION)){
+                    sortedAppts[i]=appt;
+                    i++;
+                }
+            }
+            for(Appointment appt:appointments){
+                if(appt.getLocation().equals(Location.MORRIS)){
+                    sortedAppts[i]=appt;
+                    i++;
+                }
+            }
+        }
     } //sort by zip codes and print
     public void printByPatient() {
 

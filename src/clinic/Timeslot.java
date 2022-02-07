@@ -10,6 +10,10 @@ public class Timeslot implements Comparable<Timeslot> {
         this.time = time;
     }
 
+    public Time getTime(){
+        return time;
+    }
+
     @Override
     public String toString() {
         String output = date.toString() + ", " + time.toString();

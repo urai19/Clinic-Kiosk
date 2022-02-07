@@ -11,6 +11,18 @@ public class Appointment {
         this.location=location;
     }
 
+    public Patient getPatient(){
+        return patient;
+    }
+    public Timeslot getTimeslot(){
+        return slot;
+    }
+    public Location getLocation(){
+        return location;
+    }
+
+
+
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Appointment){
@@ -33,10 +45,19 @@ public class Appointment {
 
 
     public static void main(String[] args) {
-        //Test Case#1
+        //Test Case#1, testing the toString() method.
         Appointment apt=new Appointment(new Patient("Udayan","Rai",new Date("02/19/2002")),
                                         new Timeslot(new Date("02/10/2022"), new Time(12,20)),
                                         Location.MERCER);
         System.out.println(apt.toString());
+
+        //Test Case#2, testing the equals method
+        Appointment test1= new Appointment(new Patient("Garvit", "Gupta", new Date("03/12/2002")),
+                          new Timeslot(new Date("02/10/2022"),new Time(12,20)), Location.MERCER);
+        System.out.println(apt.equals(test1));
+
+        Appointment test2= new Appointment(new Patient("Udayan", "Rai", new Date("02/19/2002")),
+                new Timeslot(new Date("02/10/2022"),new Time(12,20)), Location.MERCER);
+        System.out.println(apt.equals(test2));
     }
 }

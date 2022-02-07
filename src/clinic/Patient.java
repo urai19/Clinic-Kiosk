@@ -11,6 +11,9 @@ public class Patient implements Comparable<Patient> {
         this.dob=dob;
     }
 
+    public Date getDob(){
+        return dob;
+    }
     @Override
     public String toString(){
         String output = fname + " "+ lname + ", DOB:"+dob;
