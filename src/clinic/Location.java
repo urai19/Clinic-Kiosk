@@ -15,6 +15,7 @@ public enum Location {
         this.city = city;
     }
 
+
     @Override
     public String toString(){
         String output=this.city+ " "+ this.zipcode;
