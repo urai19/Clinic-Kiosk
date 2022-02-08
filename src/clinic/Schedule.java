@@ -101,9 +101,9 @@ public class Schedule {
 
     Appointment[] sortedAppts  = new Appointment[appointments.length];
     Appointment[] sortedTimeSlots  = sortTimeslot(sortedAppts);
-    Appointment[] sortedZips  = new Appointment[sortedTimeSlots.length+1];
-
+    Appointment[] sortedZips  = new Appointment[sortedTimeSlots.length];
     int counter = 0;
+
          for (int i =0; i < sortedTimeSlots.length; i++){
           if (sortedTimeSlots[i].getLocation().equals(Location.UNION)){
             sortedZips[counter] = sortedTimeSlots[i];
@@ -137,7 +137,9 @@ public class Schedule {
                 counter++;
             }
         }
-
+        for(Appointment appt:sortedZips){
+            System.out.println(appt.toString());
+        }
     }
 
         //sort by zip codes and print
