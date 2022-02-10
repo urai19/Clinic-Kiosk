@@ -1,4 +1,5 @@
 package clinic;
+import java.util.Calendar;
 
 public class Patient implements Comparable<Patient> {
     private String fname;
@@ -14,11 +15,13 @@ public class Patient implements Comparable<Patient> {
     public Date getDob(){
         return dob;
     }
+
     @Override
     public String toString(){
         String output = fname + " "+ lname + ", DOB:"+dob;
         return output;
     }
+
 
     @Override
     public int compareTo(Patient patient){
@@ -50,8 +53,8 @@ public class Patient implements Comparable<Patient> {
 
     public static void main(String[] args) {
         //test case #1, testing the toString and the format of how the user sees the patient info
-        String fname= "Dhruv";
-        String lname= "Patel";
+        String fname= "Neel";
+        String lname= "Shah";
         Date dob= new Date("2/14/2002");
         Patient patient1_1= new Patient(fname,lname,dob);
         System.out.println(patient1_1.toString());
@@ -97,6 +100,12 @@ public class Patient implements Comparable<Patient> {
         Patient patient8_2 = new Patient("Udayan", "Rai", new Date("9/19/2002"));
         int result_8 = patient8_1.compareTo(patient8_2);
         System.out.println(result_8); //Expected =0
+
+        //test case #9, testing isValidDob
+        Patient patient9_1 = new Patient("Udayan", "Rai", new Date("9/19/2030"));
+
+
+
 
     }
 }

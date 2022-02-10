@@ -61,6 +61,10 @@ public class Schedule {
             returner = false;
         }
 
+        for (int i=0; i < appointments.length; i++){
+            if (appointments[i].getTimeslot().compareTo(appt.getTimeslot()) == 0) returner = false;
+        }
+
         if (appointments[appointments.length-1] != null){
             grow();
         }
@@ -131,8 +135,29 @@ public class Schedule {
         }
     }
 
-        //sort by zip codes and print
     public void printByPatient() {
+
+        Appointment[] sortedAppts = new Appointment[appointments.length];
+        for (int i = 0; i < sortedAppts.length; i++) {
+            sortedAppts[i] = appointments[i];
+        }
+
+        for (int i = 0; i < sortedAppts.length - 1; i++) {
+
+            int index = i;
+            for (int j = i + 1; j < sortedAppts.length; j++) {
+                if (sortedAppts[j].getPatient().compareTo(sortedAppts[index].getPatient()) == -1) {
+                    index = j;
+                }
+            }
+            Appointment smallerTimeslot = sortedAppts[index];
+            sortedAppts[index] = sortedAppts[i];
+            sortedAppts[i] = smallerTimeslot;
+        }
+
+        for(Appointment appt:sortedAppts){
+            System.out.println(appt.toString());
+        }
 
     } //sort by patient and print
 }
