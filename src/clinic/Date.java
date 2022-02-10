@@ -167,6 +167,8 @@ public class Date implements Comparable<Date> {
         Date date11_2= new Date("1/9/2008");
         System.out.println(date11_1.compareTo(date11_2)); //expected = -1
 
-    }
+        Date today = new Date();
+        System.out.println(today.toString());
 
+    }
 }
