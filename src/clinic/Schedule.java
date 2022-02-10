@@ -11,14 +11,8 @@ public class Schedule {
         this.numAppts=numAppts;
     }
 
-    private static int getMin(int[] inputArray){
-        int minValueIndex = inputArray[0];
-        for(int i=1; i<inputArray.length;i++){
-            if(inputArray[i] < minValueIndex){
-                minValueIndex = i;
-            }
-        }
-        return minValueIndex;
+    public Appointment[] getAppointments(){
+        return appointments;
     }
 
     private static Appointment[] sortTimeslot(Appointment[] inputArray) { //first sort by timeslot
@@ -63,7 +57,7 @@ public class Schedule {
 
         boolean returner = false;
 
-        if (appt.getPatient().getDob().isValid() && appt.getTimeslot().getTime().isValid()){
+        if (appt.getPatient().getDob().isValid() && appt.getTimeslot().getTime().isValid()){ //check this method
             returner = false;
         }
 
@@ -98,26 +92,22 @@ public class Schedule {
     } //print all the appointments in current order
 
     public void printByZip() {//sort by zip codes and print
-
     Appointment[] sortedAppts  = new Appointment[appointments.length];
     Appointment[] sortedTimeSlots  = sortTimeslot(sortedAppts);
     Appointment[] sortedZips  = new Appointment[sortedTimeSlots.length];
     int counter = 0;
-
          for (int i =0; i < sortedTimeSlots.length; i++){
           if (sortedTimeSlots[i].getLocation().equals(Location.UNION)){
             sortedZips[counter] = sortedTimeSlots[i];
             counter++;
               }
          }
-
          for (int i =0; i < sortedTimeSlots.length; i++){
             if (sortedTimeSlots[i].getLocation().equals(Location.MORRIS)){
                 sortedZips[counter] = sortedTimeSlots[i];
                 counter++;
              }
          }
-
         for (int i =0; i < sortedTimeSlots.length; i++){
             if (sortedTimeSlots[i].getLocation().equals(Location.MERCER)){
                 sortedZips[counter] = sortedTimeSlots[i];
@@ -130,7 +120,6 @@ public class Schedule {
                 counter++;
             }
         }
-
         for (int i =0; i < sortedTimeSlots.length; i++){
             if (sortedTimeSlots[i].getLocation().equals(Location.MIDDLESEX)){
                 sortedZips[counter] = sortedTimeSlots[i];

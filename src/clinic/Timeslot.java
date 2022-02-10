@@ -13,6 +13,7 @@ public class Timeslot implements Comparable<Timeslot> {
     public Time getTime(){
         return time;
     }
+    public Date getDate(){return date;}
 
     @Override
     public String toString() {
