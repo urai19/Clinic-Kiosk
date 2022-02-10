@@ -42,8 +42,6 @@ public class Appointment {
 
     }
 
-
-
     public static void main(String[] args) {
         //Test Case#1, testing the toString() method.
         Appointment apt=new Appointment(new Patient("Udayan","Rai",new Date("02/19/2002")),

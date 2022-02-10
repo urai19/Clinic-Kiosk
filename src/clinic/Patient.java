@@ -104,8 +104,5 @@ public class Patient implements Comparable<Patient> {
         //test case #9, testing isValidDob
         Patient patient9_1 = new Patient("Udayan", "Rai", new Date("9/19/2030"));
 
-
-
-
     }
 }
