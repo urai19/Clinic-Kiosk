@@ -23,7 +23,9 @@ public class Time implements Comparable<Time> {
 
     @Override
     public String toString() {
-        String output = hour + ":" + minute;
+        String output;
+        if(minute==0) output=hour+ ":"+ minute+"0";
+        else output = hour + ":" + minute;
         return output;
     }
 
@@ -33,7 +35,7 @@ public class Time implements Comparable<Time> {
         if(this.hour==time.hour && this.minute==time.minute){   //when the times are the same
             return 0;
         }
-        if(time.hour < this.hour){
+        else if(time.hour < this.hour){
             output=-1;
         }
         else if(time.hour >this.hour){

@@ -59,6 +59,13 @@ public class Date implements Comparable<Date> {
             month=c.get(Calendar.MONTH)+1;
             day=c.get(Calendar.DATE);
     }
+    public Date(int addYear){
+        Calendar c=Calendar.getInstance();
+        c.add(Calendar.YEAR, addYear);
+        year=c.get(Calendar.YEAR);
+        month=c.get(Calendar.MONTH)+1;
+        day=c.get(Calendar.DATE);
+    }
     public boolean isValid() {
         if(month == FEB){
             if(isLeapYear(this.year)){
@@ -93,18 +100,27 @@ public class Date implements Comparable<Date> {
         int out=-1;
         if(date.day == this.day && date.month == this.month && date.year == this.year) out = 0;
 
-        if (this.year < date.year){
+        else if (this.year < date.year){
             out=1;
         }
-        else{
+        else if(this.year == date.year){
             if(this.month < date.month){
                 out=1;
             }
-            else{
+            else if(this.month == date.month){
                 if(this.day < date.day){
                     out=1;
                 }
+                else{
+                    out=-1;
+                }
             }
+            else{
+                out=-1;
+            }
+        }
+        else{
+            out=-1;
         }
         return out;
     }
@@ -116,6 +132,8 @@ public class Date implements Comparable<Date> {
     }
 
     public static void main(String[] args) {
+        Date date= new Date(1);
+        System.out.println(date.toString());
         //Test Case#1, testing isValid with April 31
         Date date1_1= new Date("4/31/1995");
         System.out.println(date1_1.isValid()); //Expected:false
@@ -163,8 +181,8 @@ public class Date implements Comparable<Date> {
         System.out.println(date10_1.compareTo(date10_2)); //expected = 1
 
         //Test Case#11, testing compareTo with same month and day
-        Date date11_1= new Date("2/9/2008");
-        Date date11_2= new Date("1/9/2008");
+        Date date11_1= new Date("4/1/2022");
+        Date date11_2= new Date("2/10/2022");
         System.out.println(date11_1.compareTo(date11_2)); //expected = -1
 
         Date today = new Date();

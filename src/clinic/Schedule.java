@@ -1,6 +1,5 @@
 package clinic;
 
-import java.sql.SQLOutput;
 
 public class Schedule {
 
@@ -41,7 +40,7 @@ public class Schedule {
 
     private int find(Appointment appt) {//return the index, or NOT_FOUND
         for (int i = 0; i<appointments.length; i++){
-            if (appointments[i].equals(appt)){
+            if (appointments[i]!=null && appointments[i].equals(appt)){
                 return i;
             }
         }
@@ -63,6 +62,7 @@ public class Schedule {
     public boolean add(Appointment appt) {
 
         boolean returner = false;
+        if(find(appt)!=-1) return false;
 
         for (int i = 0; i < appointments.length; i++) {
             if (appointments[i] == null) {
@@ -79,24 +79,21 @@ public class Schedule {
     }
 
     public boolean remove(Appointment appt) {
-
-        Boolean returner = false;
-        Appointment[] sortedAppts = new Appointment[numAppts];
-        for (int i = 0; i < sortedAppts.length; i++) {
-            if ((appointments[i] != null) && (appointments[i]!=appt)) {
-                sortedAppts[i] = appointments[i];
-                numAppts--;
-                returner = true;
+        int index= find(appt);
+        if(index==-1) return false;
+        Appointment[] arr= new Appointment[numAppts];
+        int count=0;
+        for(int i=0; i<appointments.length; i++){
+            if(count<numAppts && i!=index){
+                arr[count]=appointments[i];
+                count++;
             }
         }
-        appointments = new Appointment[sortedAppts.length];
-        for (int i=0; i<sortedAppts.length;i++){
-            appointments[i]=sortedAppts[i];
-
-        }
-
-        return returner;
+        numAppts--;
+        appointments=arr;
+        return true;
     }
+
 
     public void print() {
         for(Appointment appt:appointments) {
@@ -108,10 +105,11 @@ public class Schedule {
 
     public void printByZip() {//sort by zip codes and print
     Appointment[] sortedAppts  = new Appointment[numAppts];
-
-    for (int i=0; i< sortedAppts.length;i++){
+    int index=0;
+    for (int i=0; i< appointments.length;i++){
         if (appointments[i] != null) {
-            sortedAppts[i] = appointments[i];
+            sortedAppts[index] = appointments[i];
+            index++;
         }
     }
 
@@ -170,9 +168,11 @@ public class Schedule {
     public void printByPatient() {
 
         Appointment[] sortedAppts = new Appointment[numAppts];
-        for (int i = 0; i < sortedAppts.length; i++) {
+        int counter=0;
+        for (int i = 0; i < appointments.length; i++) {
             if (appointments[i] != null) {
-                sortedAppts[i] = appointments[i];
+                sortedAppts[counter] = appointments[i];
+                counter++;
             }
         }
 
@@ -224,18 +224,18 @@ public class Schedule {
 
         Appointment[] apptArray = {testAppt_4, testAppt_5, testAppt_6};
         Schedule testSchedule = new Schedule(apptArray, 3);
-        testSchedule.print();
-        System.out.println("*********ADDING Smith********");
+//        testSchedule.print();
+//        System.out.println("*********ADDING Smith********");
         //testSchedule.printByZip();
        // testSchedule.printByPatient();
         Appointment testAppt_8=new Appointment(new Patient("Garvit","Smith",new Date("02/19/2002")),
                 new Timeslot(new Date("01/10/2000"), new Time(12,20)),
                 Location.UNION);
         testSchedule.add(testAppt_8);
-        testSchedule.print();
-        System.out.println("*********PrintZip********");
-        testSchedule.printByZip();
-        System.out.println("*********PrintPatients********");
+        //testSchedule.print();
+        //System.out.println("*********PrintZip********");
+        //testSchedule.printByZip();
+        //System.out.println("*********PrintPatients********");
         testSchedule.printByPatient();
         System.out.println("*********Removing Apple********");
         testSchedule.remove(testAppt_4);

@@ -18,7 +18,7 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public String toString(){
-        String output = fname + " "+ lname + ", DOB:"+dob;
+        String output = fname + " "+ lname + ", DOB: "+dob;
         return output;
     }
 
@@ -41,8 +41,8 @@ public class Patient implements Comparable<Patient> {
                 output=1;
             }
             else{   //comparing dob's because first and last names are same
-                if((this.dob).compareTo(patient.dob)==1) output=-1;
-                else output=1;
+                if((this.dob).compareTo(patient.dob)==1) output=1;
+                else output=-1;
             }
         }
         else if (this.lname.compareTo(patient.lname) < 0){ //if patient.lname comes after this.lname
@@ -101,8 +101,6 @@ public class Patient implements Comparable<Patient> {
         int result_8 = patient8_1.compareTo(patient8_2);
         System.out.println(result_8); //Expected =0
 
-        //test case #9, testing isValidDob
-        Patient patient9_1 = new Patient("Udayan", "Rai", new Date("9/19/2030"));
 
     }
 }
