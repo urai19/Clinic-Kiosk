@@ -10,10 +10,13 @@ public class Timeslot implements Comparable<Timeslot> {
         this.time = time;
     }
 
-    public Time getTime(){
+    public Time getTime() {
         return time;
     }
-    public Date getDate(){return date;}
+
+    public Date getDate() {
+        return date;
+    }
 
     @Override
     public String toString() {
@@ -25,7 +28,7 @@ public class Timeslot implements Comparable<Timeslot> {
     public int compareTo(Timeslot slot) {
 
         int output = 0;
-        if(this.date.compareTo(slot.date) == 0 && this.time.compareTo(slot.time)==0) return 0;
+        if (this.date.compareTo(slot.date) == 0 && this.time.compareTo(slot.time) == 0) return 0;
 
         if (this.date.compareTo(slot.date) == 1) {
             output = 1;
@@ -35,7 +38,9 @@ public class Timeslot implements Comparable<Timeslot> {
             } else {
                 output = -1;
             }
-        }else{output =-1;}
+        } else {
+            output = -1;
+        }
         return output;
     }
 
@@ -52,7 +57,7 @@ public class Timeslot implements Comparable<Timeslot> {
         Date date2_1 = new Date("2/19/2008");
         Date date2_2 = new Date("2/19/2008");
         Time time2_1 = new Time(12, 45);
-        Time time2_2 = new Time(12,45);
+        Time time2_2 = new Time(12, 45);
         Timeslot timeSlot2_1 = new Timeslot(date2_1, time2_1);
         Timeslot timeSlot2_2 = new Timeslot(date2_2, time2_2);
         System.out.println(timeSlot2_1.compareTo(timeSlot2_2)); //expected = 0

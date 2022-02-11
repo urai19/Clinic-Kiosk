@@ -3,16 +3,16 @@ package clinic;
 
 public class Schedule {
 
-    public static final int NOT_FOUND= -1;
-    private Appointment [] appointments;
+    public static final int NOT_FOUND = -1;
+    private Appointment[] appointments;
     private int numAppts;
 
-    public Schedule(Appointment[] appointments, int numAppts){
-        this.appointments=appointments;
-        this.numAppts=numAppts;
+    public Schedule(Appointment[] appointments, int numAppts) {
+        this.appointments = appointments;
+        this.numAppts = numAppts;
     }
 
-    public Appointment[] getAppointments(){
+    public Appointment[] getAppointments() {
         return appointments;
     }
 
@@ -35,12 +35,12 @@ public class Schedule {
             sortedAppts[index] = sortedAppts[i];
             sortedAppts[i] = smallerTimeslot;
         }
-    return sortedAppts;
+        return sortedAppts;
     }
 
     private int find(Appointment appt) {//return the index, or NOT_FOUND
-        for (int i = 0; i<appointments.length; i++){
-            if (appointments[i]!=null && appointments[i].equals(appt)){
+        for (int i = 0; i < appointments.length; i++) {
+            if (appointments[i] != null && appointments[i].equals(appt)) {
                 return i;
             }
         }
@@ -49,20 +49,20 @@ public class Schedule {
 
     private void grow() {//increase the capacity of the container by 4
 
-        if(appointments.length==0){
+        if (appointments.length == 0) {
             appointments = new Appointment[4];
         }
-       Appointment[] newAppointmentArray = new Appointment[appointments.length + 4];
-       for (int i=0; i<appointments.length; i++){
-           newAppointmentArray[i] = appointments[i];
-       }
+        Appointment[] newAppointmentArray = new Appointment[appointments.length + 4];
+        for (int i = 0; i < appointments.length; i++) {
+            newAppointmentArray[i] = appointments[i];
+        }
         appointments = newAppointmentArray;
     }
 
     public boolean add(Appointment appt) {
 
         boolean returner = false;
-        if(find(appt)!=-1) return false;
+        if (find(appt) != -1) return false;
 
         for (int i = 0; i < appointments.length; i++) {
             if (appointments[i] == null) {
@@ -75,67 +75,70 @@ public class Schedule {
             }
         }
 
-    return returner;
+        return returner;
     }
 
     public boolean remove(Appointment appt) {
-        int index= find(appt);
-        if(index==-1) return false;
-        Appointment[] arr= new Appointment[numAppts];
-        int count=0;
-        for(int i=0; i<appointments.length; i++){
-            if(count<numAppts && i!=index){
-                arr[count]=appointments[i];
+        int index = find(appt);
+        if (index == -1) return false;
+        Appointment[] arr = new Appointment[numAppts];
+        int count = 0;
+        for (int i = 0; i < appointments.length; i++) {
+            if (count < numAppts && i != index) {
+                arr[count] = appointments[i];
                 count++;
             }
         }
         numAppts--;
-        appointments=arr;
+        appointments = arr;
         return true;
     }
 
 
     public void print() {
-        for(Appointment appt:appointments) {
+        for (Appointment appt : appointments) {
             if (appt != null) {
                 System.out.println(appt.toString());
             }
         }
     } //print all the appointments in current order
 
-    public void printByZip() {//sort by zip codes and print
-    Appointment[] sortedAppts  = new Appointment[numAppts];
-    int index=0;
-    for (int i=0; i< appointments.length;i++){
-        if (appointments[i] != null) {
-            sortedAppts[index] = appointments[i];
-            index++;
+    private Appointment[] arrayCopy(){
+        Appointment[] sortedAppts = new Appointment[numAppts];
+        int index = 0;
+        for (int i = 0; i < appointments.length; i++) {
+            if (appointments[i] != null) {
+                sortedAppts[index] = appointments[i];
+                index++;
+            }
         }
+        return sortedAppts;
     }
+    public void printByZip() {//sort by zip codes and print
+        Appointment[] sortedAppts= arrayCopy();
+        Appointment[] sortedTimeSlots = sortTimeslot(sortedAppts);
+        Appointment[] sortedZips = new Appointment[sortedTimeSlots.length];
+        int counter = 0;
+        for (int i = 0; i < sortedTimeSlots.length; i++) {
 
-    Appointment[] sortedTimeSlots  = sortTimeslot(sortedAppts);
-    Appointment[] sortedZips  = new Appointment[sortedTimeSlots.length];
-    int counter = 0;
-         for (int i =0; i < sortedTimeSlots.length; i++){
+            if (sortedTimeSlots[i] != null) {
+                if (sortedTimeSlots[i].getLocation().equals(Location.UNION)) {
+                    sortedZips[counter] = sortedTimeSlots[i];
+                    counter++;
+                }
+            }
 
-          if (sortedTimeSlots[i] != null) {
-              if (sortedTimeSlots[i].getLocation().equals(Location.UNION)) {
-                  sortedZips[counter] = sortedTimeSlots[i];
-                  counter++;
-              }
-          }
+        }
+        for (int i = 0; i < sortedTimeSlots.length; i++) {
 
-         }
-         for (int i =0; i < sortedTimeSlots.length; i++){
-
-             if (sortedTimeSlots[i] != null) {
-                 if (sortedTimeSlots[i].getLocation().equals(Location.MORRIS)) {
-                     sortedZips[counter] = sortedTimeSlots[i];
-                     counter++;
-                 }
-             }
-         }
-        for (int i =0; i < sortedTimeSlots.length; i++){
+            if (sortedTimeSlots[i] != null) {
+                if (sortedTimeSlots[i].getLocation().equals(Location.MORRIS)) {
+                    sortedZips[counter] = sortedTimeSlots[i];
+                    counter++;
+                }
+            }
+        }
+        for (int i = 0; i < sortedTimeSlots.length; i++) {
 
             if (sortedTimeSlots[i] != null) {
                 if (sortedTimeSlots[i].getLocation().equals(Location.MERCER)) {
@@ -144,7 +147,7 @@ public class Schedule {
                 }
             }
         }
-        for (int i =0; i < sortedTimeSlots.length; i++){
+        for (int i = 0; i < sortedTimeSlots.length; i++) {
             if (sortedTimeSlots[i] != null) {
                 if (sortedTimeSlots[i].getLocation().equals(Location.SOMERSET)) {
                     sortedZips[counter] = sortedTimeSlots[i];
@@ -152,7 +155,7 @@ public class Schedule {
                 }
             }
         }
-        for (int i =0; i < sortedTimeSlots.length; i++){
+        for (int i = 0; i < sortedTimeSlots.length; i++) {
             if (sortedTimeSlots[i] != null) {
                 if (sortedTimeSlots[i].getLocation().equals(Location.MIDDLESEX)) {
                     sortedZips[counter] = sortedTimeSlots[i];
@@ -160,7 +163,7 @@ public class Schedule {
                 }
             }
         }
-        for(Appointment appt:sortedZips){
+        for (Appointment appt : sortedZips) {
             System.out.println(appt.toString());
         }
     }
@@ -168,7 +171,7 @@ public class Schedule {
     public void printByPatient() {
 
         Appointment[] sortedAppts = new Appointment[numAppts];
-        int counter=0;
+        int counter = 0;
         for (int i = 0; i < appointments.length; i++) {
             if (appointments[i] != null) {
                 sortedAppts[counter] = appointments[i];
@@ -188,8 +191,7 @@ public class Schedule {
             sortedAppts[index] = sortedAppts[i];
             sortedAppts[i] = smallerTimeslot;
         }
-
-        for(Appointment appt:sortedAppts){
+        for (Appointment appt : sortedAppts) {
             System.out.println(appt.toString());
         }
 
@@ -197,29 +199,29 @@ public class Schedule {
 
     public static void main(String[] args) {
         //Test Case#1, testing print()
-        Appointment testAppt_1=new Appointment(new Patient("Garvit","Gupta",new Date("03/19/2002")),
-                new Timeslot(new Date("01/10/2000"), new Time(12,20)),
+        Appointment testAppt_1 = new Appointment(new Patient("Garvit", "Gupta", new Date("03/19/2002")),
+                new Timeslot(new Date("01/10/2000"), new Time(12, 20)),
                 Location.SOMERSET);
-        Appointment testAppt_2=new Appointment(new Patient("Garvit","jj",new Date("01/19/2002")),
-                new Timeslot(new Date("02/10/2000"), new Time(12,20)),
+        Appointment testAppt_2 = new Appointment(new Patient("Garvit", "jj", new Date("01/19/2002")),
+                new Timeslot(new Date("02/10/2000"), new Time(12, 20)),
                 Location.MERCER);
-        Appointment testAppt_3=new Appointment(new Patient("Garvit","Gupta",new Date("02/19/2002")),
-                new Timeslot(new Date("02/10/2000"), new Time(12,20)),
+        Appointment testAppt_3 = new Appointment(new Patient("Garvit", "Gupta", new Date("02/19/2002")),
+                new Timeslot(new Date("02/10/2000"), new Time(12, 20)),
                 Location.SOMERSET);
 
         //Test Case#2
-        Appointment testAppt_4=new Appointment(new Patient("Garvit","Apple",new Date("03/19/2002")),
-                new Timeslot(new Date("01/10/2000"), new Time(12,20)),
+        Appointment testAppt_4 = new Appointment(new Patient("Garvit", "Apple", new Date("03/19/2002")),
+                new Timeslot(new Date("01/10/2000"), new Time(12, 20)),
                 Location.SOMERSET);
-        Appointment testAppt_5=new Appointment(new Patient("Garvit","Zyla",new Date("01/19/2002")),
-                new Timeslot(new Date("01/10/2000"), new Time(12,20)),
+        Appointment testAppt_5 = new Appointment(new Patient("Garvit", "Zyla", new Date("01/19/2002")),
+                new Timeslot(new Date("01/10/2000"), new Time(12, 20)),
                 Location.MERCER);
-        Appointment testAppt_6=new Appointment(new Patient("Garvit","Gupta",new Date("02/19/2002")),
-                new Timeslot(new Date("01/10/2000"), new Time(12,20)),
+        Appointment testAppt_6 = new Appointment(new Patient("Garvit", "Gupta", new Date("02/19/2002")),
+                new Timeslot(new Date("01/10/2000"), new Time(12, 20)),
                 Location.SOMERSET);
 
-        Appointment testAppt_7=new Appointment(new Patient("Garvit","Gupta",new Date("02/19/2002")),
-                new Timeslot(new Date("01/10/2000"), new Time(12,20)),
+        Appointment testAppt_7 = new Appointment(new Patient("Garvit", "Gupta", new Date("02/19/2002")),
+                new Timeslot(new Date("01/10/2000"), new Time(12, 20)),
                 Location.SOMERSET);
 
         Appointment[] apptArray = {testAppt_4, testAppt_5, testAppt_6};
@@ -227,9 +229,9 @@ public class Schedule {
 //        testSchedule.print();
 //        System.out.println("*********ADDING Smith********");
         //testSchedule.printByZip();
-       // testSchedule.printByPatient();
-        Appointment testAppt_8=new Appointment(new Patient("Garvit","Smith",new Date("02/19/2002")),
-                new Timeslot(new Date("01/10/2000"), new Time(12,20)),
+        // testSchedule.printByPatient();
+        Appointment testAppt_8 = new Appointment(new Patient("Garvit", "Smith", new Date("02/19/2002")),
+                new Timeslot(new Date("01/10/2000"), new Time(12, 20)),
                 Location.UNION);
         testSchedule.add(testAppt_8);
         //testSchedule.print();
@@ -246,14 +248,7 @@ public class Schedule {
         testSchedule.printByPatient();
 
 
-
-
-
-
-
-
-
         //testSchedule.printByZip();
 
-        }
     }
+}
