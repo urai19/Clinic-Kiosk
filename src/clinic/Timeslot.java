@@ -66,16 +66,13 @@ public class Timeslot implements Comparable<Timeslot> {
         return output;
     }
 
-    //Testbed main for the Timeslot class
+    /**
+     * Testbed main() for the timeslot class.
+     * @param args
+     */
     public static void main(String[] args) {
-        //test case #1, testing the toString and the format of how the user sees the timeslot.
-        Date date = new Date("2/19/22");
-        Time time = new Time(12, 45);
-        Timeslot firstTime = new Timeslot(date, time);
-        System.out.println(firstTime.toString());
 
-
-        //test #2 compareTo method
+        //test #1 compareTo method
         Date date2_1 = new Date("2/19/2008");
         Date date2_2 = new Date("2/19/2008");
         Time time2_1 = new Time(12, 45);
@@ -84,25 +81,34 @@ public class Timeslot implements Comparable<Timeslot> {
         Timeslot timeSlot2_2 = new Timeslot(date2_2, time2_2);
         System.out.println(timeSlot2_1.compareTo(timeSlot2_2)); //expected = 0
 
-        //test #3 compareTo method. Same time but diff date
+        //test #2 compareTo method. Same time but diff date
         Timeslot timeSlot3_1 = new Timeslot(new Date("2/19/2008"), new Time(12, 45));
         Timeslot timeSlot3_2 = new Timeslot(new Date("2/19/2009"), new Time(12, 45));
         System.out.println(timeSlot3_1.compareTo(timeSlot3_2)); //expected = 1
 
-        //test #4 compareTo method. Same time but diff date
+        //test #3 compareTo method. Same time but diff date
         Timeslot timeSlot4_1 = new Timeslot(new Date("2/19/2009"), new Time(12, 45));
         Timeslot timeSlot4_2 = new Timeslot(new Date("2/19/2008"), new Time(12, 45));
         System.out.println(timeSlot4_1.compareTo(timeSlot4_2)); //expected = -1
 
-        //test #5 compareTo method. Same date but diff time
+        //test #4 compareTo method. Same date but diff time
         Timeslot timeSlot5_1 = new Timeslot(new Date("2/19/2009"), new Time(12, 45));
         Timeslot timeSlot5_2 = new Timeslot(new Date("2/19/2009"), new Time(13, 45));
         System.out.println(timeSlot5_1.compareTo(timeSlot5_2)); //expected = 1
 
-        //test #6 compareTo method. Same date but diff time
+        //test #5 compareTo method. Same date but diff time
         Timeslot timeSlot6_1 = new Timeslot(new Date("2/19/2009"), new Time(13, 45));
         Timeslot timeSlot6_2 = new Timeslot(new Date("2/19/2009"), new Time(12, 45));
         System.out.println(timeSlot6_1.compareTo(timeSlot6_2)); //expected = -1
 
+        //test #6 compareTo method. Diff date and Diff time
+        Timeslot timeSlot7_1 = new Timeslot(new Date("2/19/2009"), new Time(13, 45));
+        Timeslot timeSlot7_2 = new Timeslot(new Date("2/21/2009"), new Time(15, 10));
+        System.out.println(timeSlot7_1.compareTo(timeSlot7_2)); //expected = 1
+
+        //test #7 compareTo method. Diff date and Diff time
+        Timeslot timeSlot8_1 = new Timeslot(new Date("2/19/2009"), new Time(13, 45));
+        Timeslot timeSlot8_2 = new Timeslot(new Date("2/13/2009"), new Time(12, 30));
+        System.out.println(timeSlot8_1.compareTo(timeSlot8_2)); //expected = -1
     }
 }

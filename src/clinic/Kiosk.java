@@ -1,6 +1,6 @@
 /**
  Kiosk class builds the user interface where one can process appointment transactions.
- Interactive program where the user enters commands through the console and the output is displayed on the consol
+ Interactive program where the user enters commands through the console and the output is displayed on the console.
  @author Garvit Gupta, Udayan Rai
  */
 package clinic;
@@ -117,7 +117,7 @@ public class Kiosk {
         Date today = new Date();
         Date one_year_later = new Date(1);
         if (birth.compareTo(today) <= 0) {
-            System.out.println("Date of birth invalid -> it is a future date");
+            System.out.println("Date of birth invalid -> it is a future date.");
             return;
         }
         if (!birth.isValid()) {
@@ -129,7 +129,7 @@ public class Kiosk {
             return;
         }
         if (aptDate.compareTo(today) >= 0) {
-            System.out.println("Appointment Date invalid -> must be a future date");
+            System.out.println("Appointment Date invalid -> must be a future date.");
             return;
         }
         if (!aptDate.isValid() || aptDate.compareTo(one_year_later) <= 0) {
@@ -137,7 +137,7 @@ public class Kiosk {
             return;
         }
         if (!time.isValid()) {
-            System.out.println("Invalid appointment time! Must enter a time between 9:00 and 16:45 with a 15-minute interval");
+            System.out.println("Invalid appointment time! Must enter a time between 9:00 and 16:45 with a 15-minute interval.");
             return;
         }
         Timeslot aptSlot = new Timeslot(aptDate, time);
@@ -145,7 +145,7 @@ public class Kiosk {
         boolean isValid = isValidAppt(book_appointment);
         if (isValid) {
             clinicSchedule.add(book_appointment);
-            System.out.println("Appointment booked and added to schedule");
+            System.out.println("Appointment booked and added to schedule.");
         }
 
     }
@@ -217,9 +217,9 @@ public class Kiosk {
             if (apptArr[i] != null && apptArr[i].getPatient().compareTo(person) == 0)
                 isRemove = clinicSchedule.remove(apptArr[i]);
         }
-        if (!isRemove) System.out.println("Not cancelled");
+        if (!isRemove) System.out.println("Not cancelled.");
         else
-            System.out.println("All appointments for " + fname + " " + lname + ", DOB: " + dob + " have been cancelled");
+            System.out.println("All appointments for " + fname + " " + lname + ", DOB: " + dob + " have been cancelled.");
     }
     /**
      Helper method that returns the correct enum Location.

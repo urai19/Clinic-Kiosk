@@ -28,6 +28,10 @@ public class Date implements Comparable<Date> {
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
+    public static final int THIRTY=  30;
+    public static final int THIRTY_ONE= 31;
+    public static final int FEB_LEAP= 29;
+    public static final int FEB_NON_LEAP= 28;
 
     public static final int MAX_BACKSLASHS = 3;
 
@@ -90,14 +94,14 @@ public class Date implements Comparable<Date> {
     public boolean isValid() {
         if (month == FEB) {
             if (isLeapYear(this.year)) {
-                if (day > 29) return false;
-            } else if (day > 28) return false;
+                if (day > FEB_LEAP) return false;
+            } else if (day > FEB_NON_LEAP) return false;
         }
         if (month == JAN || month == MAR || month == MAY || month == JUL || month == AUG || month == OCT || month == DEC) {
-            if (day > 31) return false;
+            if (day > THIRTY_ONE) return false;
         }
         if (month == APR || month == JUN || month == SEP || month == NOV) {
-            if (day > 30) return false;
+            if (day > THIRTY) return false;
         }
 
         return true;
@@ -156,24 +160,29 @@ public class Date implements Comparable<Date> {
         return output;
     }
 
+    /**
+     * Testbed main() for the date class.
+     * @param args
+     */
     public static void main(String[] args) {
-        Date date = new Date(1);
-        System.out.println(date.toString());
-        //Test Case#1, testing isValid with April 31
-        Date date1_1 = new Date("4/31/1995");
+
+        //Test Case#1, testing isValid with Jan 32
+        Date date1_1 = new Date("1/32/1995");
         System.out.println(date1_1.isValid()); //Expected:false
 
-        //Test Case#2, testing isValid with Jan 60
-        Date date2_1 = new Date("1/60/1995");
+        //Test Case#2, testing isValid with April 31
+        Date date2_1 = new Date("4/31/2010");
         System.out.println(date2_1.isValid()); //Expected:false
 
         //Test Case#3, testing isValid with Feb 29 on non-leap year
-        Date date3_1 = new Date("2/29/2015");
+        Date date3_1 = new Date("2/29/2022");
         System.out.println(date3_1.isValid()); //Expected:false
 
         //Test Case#4, testing isValid with Feb 29 on leap year
-        Date date4_1 = new Date("2/29/2016");
+        Date date4_1 = new Date("2/29/2020");
         System.out.println(date4_1.isValid()); //Expected:true
+
+        //END OF TESTING isValid().
 
         //Test Case#5, testing compareTo with same dates
         Date date5_1 = new Date("1/8/2008");
@@ -210,8 +219,6 @@ public class Date implements Comparable<Date> {
         Date date11_2 = new Date("2/10/2022");
         System.out.println(date11_1.compareTo(date11_2)); //expected = -1
 
-        Date today = new Date();
-        System.out.println(today.toString());
 
     }
 }
