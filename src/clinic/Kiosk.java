@@ -1,6 +1,6 @@
 /**
- First, a single, very descriptive sentence describing the class.
- Then, a couple more sentences of description to elaborate.
+ Kiosk class builds the user interface where one can process appointment transactions.
+ Interactive program where the user enters commands through the console and the output is displayed on the consol
  @author Garvit Gupta, Udayan Rai
  */
 package clinic;
@@ -13,10 +13,9 @@ public class Kiosk {
     private Schedule clinicSchedule;
 
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
-     @return true if person was deleted, false otherwise.
+     Constructor for the Kiosk class.
+     An instance of schedule class is initialized with an array of appointments of size 1 and
+     number of appointments is set to 0.
      */
     public Kiosk() {
         Appointment[] appointments = new Appointment[1];
@@ -24,10 +23,8 @@ public class Kiosk {
         clinicSchedule = new Schedule(appointments, num);
     }
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
-     @return true if person was deleted, false otherwise.
+     Method to start a kiosk session.
+     Includes a while loop to read user commands from the console.
      */
     public void run() {
         System.out.println("Kiosk running. Ready to process transactions.");
@@ -51,10 +48,8 @@ public class Kiosk {
         System.out.println("Kiosk session ended.");
     }
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
-     @return true if person was deleted, false otherwise.
+     Method to process all the possible valid commands given by the user.
+     @param command The command given by the user.
      */
     private void commandReader(String command) {
         String delim = " ";
@@ -103,10 +98,15 @@ public class Kiosk {
 
     }
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
-     @return true if person was deleted, false otherwise.
+      Helper method to add the given appointment to the schedule.
+     Processes the "B" command.
+     @param dob Date of birth of the patient
+     @param fname First name of the patient
+     @param lname Last name of the patient
+     @param date Date of the appointment
+     @param hours Hour of the appointment
+     @param minutes Minutes of the appointment
+     @param location Location of the appointment
      */
     private void bookAppt(String dob, String fname, String lname, String date, int hours, int minutes, String location) {
         Date birth = new Date(dob);
@@ -150,10 +150,10 @@ public class Kiosk {
 
     }
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
-     @return true if person was deleted, false otherwise.
+     Helper method that makes sure that the appointment
+     that is to be booked is valid and does not clash with any other appointments.
+     @param book_appointment Appointment given that is to be checked and potentially booked.
+     @return true if the given appointment is valid.
      */
     private boolean isValidAppt(Appointment book_appointment) {
         for (Appointment a : clinicSchedule.getAppointments()) {
@@ -173,10 +173,15 @@ public class Kiosk {
         return true;
     }
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
-     @return true if person was deleted, false otherwise.
+     Method that processes the "C" command.
+     Cancels a given appointment.
+     @param dob Date of birth of the patient
+     @param fname First name of the patient
+     @param lname Last name of the patient
+     @param date Date of the appointment
+     @param hours Hour of the appointment
+     @param minutes Minutes of the appointment
+     @param location Location of the appointment
      */
     private void cancelAppt(String dob, String fname, String lname, String date, int hours, int minutes, String location) {
         Date birth = new Date(dob);
@@ -197,9 +202,11 @@ public class Kiosk {
         ;
     }
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
+     Method that cancels all appointments of a given patient.
+     Processes the "CP" command.
+     @param dob Date of birth of the patient.
+     @param fname First name of the patient.
+     @param lname Last name of the patient.
      @return true if person was deleted, false otherwise.
      */
     private void cancelPatient(String dob, String fname, String lname) {
@@ -215,10 +222,9 @@ public class Kiosk {
             System.out.println("All appointments for " + fname + " " + lname + ", DOB: " + dob + " have been cancelled");
     }
     /**
-     Deletes the person with the given name from the list.
-     Does nothing if name doesn't appear in the list.
-     @param name the name of the person to delete.
-     @return true if person was deleted, false otherwise.
+     Helper method that returns the correct enum Location.
+     @param location the name of the location(case-insensitive).
+     @return Location regardless of case-insensitive input.
      */
     private Location getLocation(String location) {
         if (location.equalsIgnoreCase("Union")) return Location.UNION;
