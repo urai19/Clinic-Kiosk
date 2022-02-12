@@ -1,6 +1,6 @@
 /**
  Time class creates an object that holds integer values which represents a time.
- Time is in the 24 hour format and must be within the hours of operation.
+ Time is in the 24 hour (HH:MM) format and must be within the hours of operation.
  @author Garvit Gupta, Udayan Rai
  */
 package clinic;
