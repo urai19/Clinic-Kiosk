@@ -1,3 +1,7 @@
+/**
+ Patient class creates an object that holds the first name, last name, and date of Birth (DOB) of a patient.
+ @author Garvit Gupta, Udayan Rai
+ */
 package clinic;
 import java.util.Calendar;
 
@@ -6,23 +10,41 @@ public class Patient implements Comparable<Patient> {
     private String lname;
     private Date dob;
 
+    /**
+     Constructor for the Schedule class.
+     @param fname the first name of the patient.
+     @param lname the last name of the patient.
+     @param dob the date of birth of the patient.
+     */
     public Patient(String fname, String lname, Date dob){
         this.fname=fname;
         this.lname=lname;
         this.dob=dob;
     }
-
+    /**
+     Get method which returns the date of birth of the patient
+     @return dob.
+     */
     public Date getDob(){
         return dob;
     }
 
+    /**
+     Converts the information of the patient into a String which is readable by Kiosk user.
+     Lists the first name first, then last name, and then DOB of the patient.
+     @return output
+     */
     @Override
     public String toString(){
         String output = fname + " "+ lname + ", DOB: "+dob;
         return output;
     }
-
-
+    /**
+     Compares two patients and decide if they are equal or rank that one patient is greater than another.
+     Rank by last names, then first names, and then DOBs.
+     @param patient the name of the person to delete.
+     @return 0 if equal, 1 or -1 otherwise
+     */
     @Override
     public int compareTo(Patient patient){
         int output=0;

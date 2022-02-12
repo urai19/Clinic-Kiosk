@@ -1,3 +1,8 @@
+/**
+ Date class creates an object that holds a String value which represents a Date.
+ Date is in the format of MM/DD/YYYY.
+ @author Garvit Gupta, Udayan Rai
+ */
 package clinic;
 
 import java.util.Calendar;
@@ -24,9 +29,14 @@ public class Date implements Comparable<Date> {
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
 
+    public static final int MAX_BACKSLASHS = 3;
 
+    /**
+     Constructor for the Date class.
+     @param date the date to be created.
+     */
     public Date(String date) {
-        int[] backslashIndex = new int[10];
+        int[] backslashIndex = new int[MAX_BACKSLASHS];
         int counter = 0;
         for (int i = 0; i < date.length(); i++) {
             if (date.charAt(i) == '/') {
@@ -52,15 +62,20 @@ public class Date implements Comparable<Date> {
         this.month = Integer.parseInt(monthString);
         this.day = Integer.parseInt(dayString);
     }
-
-
-    public Date() { //create an object with today’s date (see Calendar class)
+    /**
+     Default Constructor for the Date class.
+     Creates an object with today’s date
+     */
+    public Date() {
         Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH) + 1;
         day = c.get(Calendar.DATE);
     }
-
+    /**
+     Alternate constructor which adds an indicated amount of years to the initialized date.
+     @param addYear the number of years to add.
+     */
     public Date(int addYear) {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.YEAR, addYear);
@@ -68,7 +83,10 @@ public class Date implements Comparable<Date> {
         month = c.get(Calendar.MONTH) + 1;
         day = c.get(Calendar.DATE);
     }
-
+    /**
+     Checks if the month inserted has the appropriate number of days.
+     @return true if a date is valid, false otherwise.
+     */
     public boolean isValid() {
         if (month == FEB) {
             if (isLeapYear(this.year)) {
@@ -84,7 +102,11 @@ public class Date implements Comparable<Date> {
 
         return true;
     }
-
+    /**
+     Checks if the year in the date is a leap year
+     @param year the year that needs to be checked if it is a leap year.
+     @return true if it is a leap year, false otherwise.
+     */
     private boolean isLeapYear(int year) {       //this helper method checks if the year is a leap year of not
         if ((this.year % QUADRENNIAL) == 0) {
             if ((this.year % CENTENNIAL) == 0) {
@@ -95,9 +117,12 @@ public class Date implements Comparable<Date> {
         }
         return false;
     }
-
+    /**
+     Compares two dates and decide if they are equal or rank one date larger than the other.
+     @param date the date to be compared to the initialized date.
+     @return 0 if equal, 1 or -1 otherwise
+     */
     @Override
-
     public int compareTo(Date date) {
         int out = -1;
         if (date.day == this.day && date.month == this.month && date.year == this.year) out = 0;
@@ -121,7 +146,10 @@ public class Date implements Comparable<Date> {
         }
         return out;
     }
-
+    /**
+     Converts the information of the date into a String which is readable by Kiosk user.
+     @return output
+     */
     @Override
     public String toString() {
         String output = this.month + "/" + this.day + "/" + this.year;

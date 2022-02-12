@@ -1,29 +1,51 @@
+/**
+ Timeslot class creates an object that holds a timeslot's date and time.
+ Timeslot includes the date and time of the appointment.
+ @author Garvit Gupta, Udayan Rai
+ */
 package clinic;
 
 public class Timeslot implements Comparable<Timeslot> {
 
     private Date date;
     private Time time;
-
+    /**
+     Constructor for the Timeslot class.
+     @param date the date of timeslot of the appointment.
+     @param time the time of timeslot of the appointment.
+     */
     public Timeslot(Date date, Time time) {
         this.date = date;
         this.time = time;
     }
-
+    /**
+     Get method which returns the time of the Timeslot.
+     @return time.
+     */
     public Time getTime() {
         return time;
     }
-
+    /**
+     Get method which returns the Date of the Timeslot.
+     @return date.
+     */
     public Date getDate() {
         return date;
     }
-
+    /**
+     Converts the information of the timeslot into a String which is readable by Kiosk user.
+     @return output
+     */
     @Override
     public String toString() {
         String output = date.toString() + ", " + time.toString();
         return output;
     }
-
+    /**
+     Compares two timeslots and decide if they are equal or rank one timeslot larger than the other.
+     @param slot the timeslot to be compared to the initialized timeslot.
+     @return 0 if equal, 1 or -1 otherwise
+     */
     @Override
     public int compareTo(Timeslot slot) {
 

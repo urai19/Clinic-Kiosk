@@ -1,3 +1,8 @@
+/**
+ Time class creates an object that holds a String value which represents a time.
+ Time is in the 24 hour format and must be within the hours of operation.
+ @author Garvit Gupta, Udayan Rai
+ */
 package clinic;
 
 public class Time implements Comparable<Time> {
@@ -5,11 +10,20 @@ public class Time implements Comparable<Time> {
     private int hour;
     private int minute;
 
+    /**
+     Constructor for the Time class.
+     @param hour the hour of the date to be created.
+     @param minute the minute of the date to be created.
+     */
     public Time(int hour, int minute) {
         this.hour = hour;
         this.minute = minute;
     }
-
+    /**
+     Checks if a time is valid.
+     Time must be within the hours of operation and must be a 15-minute interval.
+     @return true if a time is valid, false otherwise.
+     */
     public boolean isValid() {
         if (hour < 9 || hour >= 17 || minute < 0 || minute > 59) {
             return false;
@@ -19,8 +33,10 @@ public class Time implements Comparable<Time> {
             return true;
         }
     }
-
-
+    /**
+     Converts the information of the time into a String which is readable by Kiosk user.
+     @return output
+     */
     @Override
     public String toString() {
         String output;
@@ -28,7 +44,11 @@ public class Time implements Comparable<Time> {
         else output = hour + ":" + minute;
         return output;
     }
-
+    /**
+     Compares two times and decide if they are equal or rank one time larger than the other.
+     @param time the time to be compared to the initialized time.
+     @return 0 if equal, 1 or -1 otherwise
+     */
     @Override
     public int compareTo(Time time) {
         int output = 0;
@@ -44,7 +64,6 @@ public class Time implements Comparable<Time> {
         }
         return output;
     }
-
 
     public static void main(String[] args) {
         //Test Case #1, testing isValid with an impossible time(when hour>23 and minute>59)

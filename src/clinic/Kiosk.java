@@ -1,3 +1,8 @@
+/**
+ First, a single, very descriptive sentence describing the class.
+ Then, a couple more sentences of description to elaborate.
+ @author Garvit Gupta, Udayan Rai
+ */
 package clinic;
 
 import java.util.Scanner;
@@ -7,13 +12,23 @@ import java.util.Calendar;
 public class Kiosk {
     private Schedule clinicSchedule;
 
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     public Kiosk() {
         Appointment[] appointments = new Appointment[1];
         int num = 0;
         clinicSchedule = new Schedule(appointments, num);
     }
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     public void run() {
         System.out.println("Kiosk running. Ready to process transactions.");
         System.out.println();
@@ -35,7 +50,12 @@ public class Kiosk {
         }
         System.out.println("Kiosk session ended.");
     }
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     private void commandReader(String command) {
         String delim = " ";
         StringTokenizer line = new StringTokenizer(command, delim);
@@ -82,7 +102,12 @@ public class Kiosk {
         }
 
     }
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     private void bookAppt(String dob, String fname, String lname, String date, int hours, int minutes, String location) {
         Date birth = new Date(dob);
         Patient person = new Patient(fname, lname, birth);
@@ -124,7 +149,12 @@ public class Kiosk {
         }
 
     }
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     private boolean isValidAppt(Appointment book_appointment) {
         for (Appointment a : clinicSchedule.getAppointments()) {
             if (a != null && a.equals(book_appointment)) {
@@ -142,7 +172,12 @@ public class Kiosk {
         }
         return true;
     }
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     private void cancelAppt(String dob, String fname, String lname, String date, int hours, int minutes, String location) {
         Date birth = new Date(dob);
         Patient person = new Patient(fname, lname, birth);
@@ -161,7 +196,12 @@ public class Kiosk {
         else System.out.println("Appointment cancelled.");
         ;
     }
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     private void cancelPatient(String dob, String fname, String lname) {
         Patient person = new Patient(fname, lname, new Date(dob));
         boolean isRemove = true;
@@ -174,7 +214,12 @@ public class Kiosk {
         else
             System.out.println("All appointments for " + fname + " " + lname + ", DOB: " + dob + " have been cancelled");
     }
-
+    /**
+     Deletes the person with the given name from the list.
+     Does nothing if name doesn't appear in the list.
+     @param name the name of the person to delete.
+     @return true if person was deleted, false otherwise.
+     */
     private Location getLocation(String location) {
         if (location.equalsIgnoreCase("Union")) return Location.UNION;
         if (location.equalsIgnoreCase("Morris")) return Location.MORRIS;
@@ -183,6 +228,5 @@ public class Kiosk {
         if (location.equalsIgnoreCase("Somerset")) return Location.SOMERSET;
         else return null;
     }
-
 
 }
