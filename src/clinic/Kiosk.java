@@ -175,16 +175,16 @@ public class Kiosk {
      @return True if the given appointment is valid.
      */
     private boolean isValidAppt(Appointment book_appointment) {
-        for (Appointment a : clinicSchedule.getAppointments()) {
-            if (a != null && a.equals(book_appointment)) {
+        for (Appointment appt : clinicSchedule.getAppointments()) {
+            if (appt != null && appt.equals(book_appointment)) {
                 System.out.println("Same appointment exists in the schedule.");
                 return false;
             }
-            if (a != null && a.getTimeslot().compareTo(book_appointment.getTimeslot()) == 0 && a.getLocation().equals(book_appointment.getLocation())) {
+            if (appt != null && appt.getTimeslot().compareTo(book_appointment.getTimeslot()) == 0 && appt.getLocation().equals(book_appointment.getLocation())) {
                 System.out.println("Timeslot has been taken at this location.");
                 return false;
             }
-            if (a != null && a.getPatient().compareTo(book_appointment.getPatient()) == 0 && a.getTimeslot().getDate().compareTo(book_appointment.getTimeslot().getDate()) == 0) {
+            if (appt != null && appt.getPatient().compareTo(book_appointment.getPatient()) == 0 && appt.getTimeslot().getDate().compareTo(book_appointment.getTimeslot().getDate()) == 0) {
                 System.out.println("Same patient cannot book an appointment with the same date.");
                 return false;
             }
@@ -211,9 +211,9 @@ public class Kiosk {
         Timeslot aptSlot = new Timeslot(aptDate, time);
         Appointment cancel = new Appointment(person, aptSlot, loc);
         boolean isRemove = false;
-        for (Appointment a : clinicSchedule.getAppointments()) {
-            if (a != null && a.equals(cancel)) {
-                isRemove = clinicSchedule.remove(a);
+        for (Appointment appt : clinicSchedule.getAppointments()) {
+            if (appt != null && appt.equals(cancel)) {
+                isRemove = clinicSchedule.remove(appt);
             }
         }
         if (!isRemove) System.out.println("Not cancelled, appointment does not exist.");

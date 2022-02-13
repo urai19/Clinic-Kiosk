@@ -230,7 +230,6 @@ public class Schedule {
         for (Appointment appt : sortedAppts) {
             System.out.println(appt.toString());
         }
-
     } //sort by patient and print
 
     public static void main(String[] args) {
