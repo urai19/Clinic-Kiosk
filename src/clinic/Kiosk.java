@@ -98,7 +98,7 @@ public class Kiosk {
 
     }
     /**
-      Helper method to add the given appointment to the schedule.
+     Helper method to add the given appointment to the schedule.
      Processes the "B" command.
      @param dob Date of birth of the patient
      @param fname First name of the patient
@@ -153,7 +153,7 @@ public class Kiosk {
      Helper method that makes sure that the appointment
      that is to be booked is valid and does not clash with any other appointments.
      @param book_appointment Appointment given that is to be checked and potentially booked.
-     @return true if the given appointment is valid.
+     @return True if the given appointment is valid.
      */
     private boolean isValidAppt(Appointment book_appointment) {
         for (Appointment a : clinicSchedule.getAppointments()) {
