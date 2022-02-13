@@ -75,27 +75,38 @@ public class Kiosk {
             cancelPatient(dob, fname, lname);
         }
         if (code.equals("P")) {
-            System.out.println();
-            System.out.println("*list of appointments in the schedule.");
-            clinicSchedule.print();
-            System.out.println("*end of schedule*");
-            System.out.println();
+            printP();
         }
         if (code.equals("PZ")) {
-            System.out.println();
-            System.out.println("*list of appointments by zip and time slot.");
-            clinicSchedule.printByZip();
-            System.out.println("*end of schedule*");
-            System.out.println();
+            printPZ();
         }
         if (code.equals("PP")) {
-            System.out.println();
-            System.out.println("*list of appointments by patient.");
-            clinicSchedule.printByPatient();
-            System.out.println("*end of schedule*");
-            System.out.println();
+            printPP();
         }
+    }
 
+    private void printP(){
+        System.out.println();
+        System.out.println("*list of appointments in the schedule.");
+        clinicSchedule.print();
+        System.out.println("*end of schedule*");
+        System.out.println();
+    }
+
+    private void printPZ(){
+        System.out.println();
+        System.out.println("*list of appointments by zip and time slot.");
+        clinicSchedule.printByZip();
+        System.out.println("*end of schedule*");
+        System.out.println();
+    }
+
+    private void printPP(){
+        System.out.println();
+        System.out.println("*list of appointments by patient.");
+        clinicSchedule.printByPatient();
+        System.out.println("*end of schedule*");
+        System.out.println();
     }
     /**
      Helper method to add the given appointment to the schedule.
@@ -199,7 +210,6 @@ public class Kiosk {
         }
         if (!isRemove) System.out.println("Not cancelled, appointment does not exist.");
         else System.out.println("Appointment cancelled.");
-        ;
     }
     /**
      Method that cancels all appointments of a given patient.
