@@ -6,6 +6,11 @@
 package clinic;
 
 public class Time implements Comparable<Time> {
+    public static final int OPENING_HOUR = 9;
+    public static final int CLOSING_HOUR = 17;
+    public static final int OPENING_MINUTE = 0;
+    public static final int CLOSING_MINUTE = 59;
+    public static final int INTERVAL = 15;
 
     private int hour;
     private int minute;
@@ -25,9 +30,9 @@ public class Time implements Comparable<Time> {
      @return true if a time is valid, false otherwise.
      */
     public boolean isValid() {
-        if (hour < 9 || hour >= 17 || minute < 0 || minute > 59) {
+        if (hour < OPENING_HOUR || hour >= CLOSING_HOUR || minute < OPENING_MINUTE || minute > CLOSING_MINUTE) {
             return false;
-        } else if (minute % 15 != 0) {
+        } else if (minute % INTERVAL != 0) {
             return false;
         } else {
             return true;
