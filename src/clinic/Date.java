@@ -28,8 +28,8 @@ public class Date implements Comparable<Date> {
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
-    public static final int THIRTY=  30;
-    public static final int THIRTY_ONE= 31;
+    public static final int MAX_DAYS =  30;
+    public static final int MAX_DAYS_2 = 31;
     public static final int FEB_LEAP= 29;
     public static final int FEB_NON_LEAP= 28;
 
@@ -98,10 +98,10 @@ public class Date implements Comparable<Date> {
             } else if (day > FEB_NON_LEAP) return false;
         }
         if (month == JAN || month == MAR || month == MAY || month == JUL || month == AUG || month == OCT || month == DEC) {
-            if (day > THIRTY_ONE) return false;
+            if (day > MAX_DAYS_2) return false;
         }
         if (month == APR || month == JUN || month == SEP || month == NOV) {
-            if (day > THIRTY) return false;
+            if (day > MAX_DAYS) return false;
         }
 
         return true;
