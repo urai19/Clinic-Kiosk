@@ -216,7 +216,5 @@ public class Date implements Comparable<Date> {
         Date date11_1 = new Date("4/1/2022");
         Date date11_2 = new Date("2/10/2022");
         System.out.println(date11_1.compareTo(date11_2)); //expected = -1
-
-
     }
 }
