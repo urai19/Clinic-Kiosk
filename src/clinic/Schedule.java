@@ -160,17 +160,14 @@ public class Schedule {
         Appointment[] sortedZips = new Appointment[sortedTimeSlots.length];
         int counter = 0;
         for (int i = 0; i < sortedTimeSlots.length; i++) {
-
             if (sortedTimeSlots[i] != null) {
                 if (sortedTimeSlots[i].getLocation().equals(Location.UNION)) {
                     sortedZips[counter] = sortedTimeSlots[i];
                     counter++;
                 }
             }
-
         }
         for (int i = 0; i < sortedTimeSlots.length; i++) {
-
             if (sortedTimeSlots[i] != null) {
                 if (sortedTimeSlots[i].getLocation().equals(Location.MORRIS)) {
                     sortedZips[counter] = sortedTimeSlots[i];
@@ -179,7 +176,6 @@ public class Schedule {
             }
         }
         for (int i = 0; i < sortedTimeSlots.length; i++) {
-
             if (sortedTimeSlots[i] != null) {
                 if (sortedTimeSlots[i].getLocation().equals(Location.MERCER)) {
                     sortedZips[counter] = sortedTimeSlots[i];
@@ -221,7 +217,6 @@ public class Schedule {
             }
         }
         for (int i = 0; i < sortedAppts.length - 1; i++) {
-
             int index = i;
             for (int j = i + 1; j < sortedAppts.length; j++) {
                 if (sortedAppts[j].getPatient().compareTo(sortedAppts[index].getPatient()) == 1) {

@@ -84,7 +84,10 @@ public class Kiosk {
             printPP();
         }
     }
-
+    /**
+     Helper method to print out for Command P.
+     Prints appointments in order of the Array
+     */
     private void printP(){
         System.out.println();
         System.out.println("*list of appointments in the schedule.");
@@ -92,7 +95,10 @@ public class Kiosk {
         System.out.println("*end of schedule*");
         System.out.println();
     }
-
+    /**
+     Helper method to print out for Command PZ.
+     Prints appointments in order of ZipCodes.
+     */
     private void printPZ(){
         System.out.println();
         System.out.println("*list of appointments by zip and time slot.");
@@ -100,7 +106,10 @@ public class Kiosk {
         System.out.println("*end of schedule*");
         System.out.println();
     }
-
+    /**
+     Helper method to print out for Command PP.
+     Prints appointments in order of Patients.
+     */
     private void printPP(){
         System.out.println();
         System.out.println("*list of appointments by patient.");
@@ -158,7 +167,6 @@ public class Kiosk {
             clinicSchedule.add(book_appointment);
             System.out.println("Appointment booked and added to schedule.");
         }
-
     }
     /**
      Helper method that makes sure that the appointment
@@ -244,5 +252,4 @@ public class Kiosk {
         if (location.equalsIgnoreCase("Somerset")) return Location.SOMERSET;
         else return null;
     }
-
 }

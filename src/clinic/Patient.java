@@ -51,7 +51,6 @@ public class Patient implements Comparable<Patient> {
         if (this.fname.equals(patient.fname)  && this.lname.equals(patient.lname) && (this.dob).compareTo(patient.dob)==0){
             return 0;
         }
-
         if(this.lname.compareTo(patient.lname)>0){ //if patient.lname comes before
             output=-1; //return -1 becuase patient.lname comes before this.lname
         }
@@ -122,7 +121,5 @@ public class Patient implements Comparable<Patient> {
         Patient patient8_2 = new Patient("Udayan", "Rai", new Date("9/19/2002"));
         int result_8 = patient8_1.compareTo(patient8_2);
         System.out.println(result_8); //Expected =0
-
-
     }
 }

@@ -33,5 +33,4 @@ public enum Location {
         String output = this.city + " " + this.zipcode;
         return output;
     }
-
 }

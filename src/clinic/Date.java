@@ -103,7 +103,6 @@ public class Date implements Comparable<Date> {
         if (month == APR || month == JUN || month == SEP || month == NOV) {
             if (day > MAX_DAYS) return false;
         }
-
         return true;
     }
     /**
@@ -130,7 +129,6 @@ public class Date implements Comparable<Date> {
     public int compareTo(Date date) {
         int out = -1;
         if (date.day == this.day && date.month == this.month && date.year == this.year) out = 0;
-
         else if (this.year < date.year) {
             out = 1;
         } else if (this.year == date.year) {

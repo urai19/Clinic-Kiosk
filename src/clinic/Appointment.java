@@ -66,7 +66,6 @@ public class Appointment {
         String output = this.patient.toString() + ", Appointment Detail: " + this.slot.toString() + ", " + this.location.toString() +
                 ", " + this.location.name();
         return output;
-
     }
 
     public static void main(String[] args) {

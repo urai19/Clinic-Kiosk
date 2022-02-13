@@ -48,10 +48,8 @@ public class Timeslot implements Comparable<Timeslot> {
      */
     @Override
     public int compareTo(Timeslot slot) {
-
         int output = 0;
         if (this.date.compareTo(slot.date) == 0 && this.time.compareTo(slot.time) == 0) return 0;
-
         if (this.date.compareTo(slot.date) == 1) {
             output = 1;
         } else if (this.date.compareTo(slot.date) == 0) {
